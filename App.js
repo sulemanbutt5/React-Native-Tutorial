@@ -1,32 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { TextInput, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
 
-  const [name,setName]=useState('Suleman')
-  const [age, setAge] = useState(22)
+  const [people,setPeople]=useState([
+    {name:'ali',key:'1'},
+    {name:'sam',key:'2'},
+    {name:'asif',key:'3'},
+    {name:'shaheen',key:'4'},
+    {name:'akif',key:'5'},
+    {name:'zubair',key:'6'},
+    {name:'suleman',key:'7'},
+    {name:'alina',key:'8'},
+    {name:'sami',key:'9'},
+    {name:'asim',key:'10'},
+    {name:'shamus',key:'11'},
+    {name:'aleem',key:'12'},
+    {name:'zain',key:'13'},
+    {name:'shaun',key:'14'},
+  ])
   
   return (
     <View style={styles.container}>
-        <Text>Enter Name: </Text>
-        <TextInput 
-          multiline
-          style={styles.input}
-          placeholder='e.g. Ali Khan'
-          onChangeText={(val)=>{setName(val)}}
-        >
-        </TextInput>
-        
-        <Text>Enter Age: </Text>
-        <TextInput 
-          style={styles.input}
-          placeholder='e.g. 29'
-          keyboardType='numeric'
-          onChangeText={(val)=>{setAge(val)}}
-        >
-        </TextInput>
-        <Text>My name is {name} and age is {age} years.</Text>
+    <Text style={styles.header}>List of Names</Text>
+      <ScrollView>
+        {people.map( item => (
+              <View key={item.key}>
+                <Text style={styles.item}>
+                  {item.name}
+                </Text>
+              </View>
+            ))}
+      </ScrollView>
     </View>
   );
 }
@@ -34,15 +40,29 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'gold',
+    paddingTop:40,
+    paddingHorizontal:20,
+    paddingBottom:20,
+  //  alignItems: 'center',
+  //  justifyContent: 'center',
   },
-  input:{
-    borderWidth: 1,
-    borderColor: '#777',
+  item:{
+    marginTop:24,
     padding:8,
-    margin:10,
-    width:200
+    backgroundColor:'lightgrey',
+    fontSize:24,
+    borderColor:'black',
+    borderWidth:1,
+  },
+  header:{
+    padding:20,
+    textAlign:'center',
+    fontWeight:'bold',
+    backgroundColor:'orange',
+    fontSize:24,
+    borderColor:'black',
+    borderWidth:2,
   }
+
 });
