@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Tutorial wli app</Text>
+      <Text>Suleman Butt React Native App</Text>
       <StatusBar style="auto" />
     </View>
   );
