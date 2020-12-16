@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList,Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
 
@@ -24,15 +24,16 @@ export default function App() {
   return (
     <View style={styles.container}>
     <Text style={styles.header}>List of Names</Text>
-      <ScrollView>
-        {people.map( item => (
-              <View key={item.key}>
-                <Text style={styles.item}>
-                  {item.name}
-                </Text>
-              </View>
-            ))}
-      </ScrollView>
+
+    <FlatList 
+      //numColumns={2}
+      keyExtractor={(item)=>item.key}
+      data={people}
+      renderItem={({item}) =>
+      (
+        <Text style={styles.item}>{item.name}</Text>
+      )}
+    />
     </View>
   );
 }
