@@ -1,82 +1,82 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { FlatList,TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet,FlatList, Text, View } from 'react-native';
+import Header from './components/header'
+import TodoItem from './components/todoitem';
+import AddTodo from './components/addtodo'
 
 export default function App() {
 
-  const [people,setPeople]=useState([
-    {name:'ali',key:'1'},
-    {name:'sam',key:'2'},
-    {name:'asif',key:'3'},
-    {name:'shaheen',key:'4'},
-    {name:'akif',key:'5'},
-    {name:'zubair',key:'6'},
-    {name:'suleman',key:'7'},
-    {name:'alina',key:'8'},
-    {name:'sami',key:'9'},
-    {name:'asim',key:'10'},
-    {name:'shamus',key:'11'},
-    {name:'aleem',key:'12'},
-    {name:'zain',key:'13'},
-    {name:'shaun',key:'14'},
+  const [todos, setTodos] = useState([
+    {text:"yo Hhov",id:'1'},
+    {text:"nkh jcjfvjgv jhkvkv",id:'2'},
+    {text:"njhbvi jbjubiubgv jhbjbikv",id:'3'},
+    {text:"yo ihov",id:'4'},
+    {text:"nkh jcjfvjgv jhkvkv",id:'5'},
+    {text:"njhbvi jbjubiubgv jhbjbikv",id:'6'},
+    {text:"yo ihov",id:'7'},
+    {text:"nkh jcjfvjgv jhkvkv",id:'8'},
+    {text:"njhbvi jbjubiubgv jhbjbikv",id:'9'},
+    {text:"yo ihov",id:'10'},
+    {text:"nkh jcjfvjgv jhkvkv",id:'11'},
+    {text:"njhbvi jbjubiubgv jhbjbik",id:'12'},
   ])
 
-  const pressHandler = (id)=>
-  { 
-    console.log(id)
-    setPeople((prevpeople)=>{
-      return prevpeople.filter((person) => person.key != id)
+  const pressHandler=(id)=>
+  {
+    setTodos((prevtodos)=>{
+      return prevtodos.filter((todo) => todo.id != id)
     })
   }
-  
-  return (
-    <View style={styles.container}>
-    <Text style={styles.header}>List of Names</Text>
 
-    <FlatList 
-      //numColumns={2}
-      keyExtractor={(item)=>item.key}
-      data={people}
-      renderItem={({item}) =>
-      (
-        <TouchableOpacity onPress={()=>pressHandler(item.key)}>
-          <Text style={styles.item}>
-            {item.name}
-          </Text>
-        </TouchableOpacity>
-        
-      )}
-    />
+  const submitHandler = (text)=>
+  {
+    setTodos((prevtodos)=>
+    {
+      return [
+        {text: text, id: Math.random().toString()},
+        ...prevtodos
+      ]
+    })
+  }
+
+  return(
+  
+  <View style={styles.container}>
+    <Header/>
+    <View style={styles.content}>
+    <AddTodo submitHandler={submitHandler}/>
+      {/* To Form */}
+      <View style={styles.list}>
+        <FlatList
+          keyExtractor={todos.id}
+          data={todos}
+          renderItem={({item}) => (
+          
+          <TodoItem item={item} pressHandler={pressHandler}/>
+          
+          )}
+        />
+      </View>
     </View>
-  );
+
+  </View>
+
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gold',
-    paddingTop:40,
-    paddingHorizontal:20,
-    paddingBottom:20,
-  //  alignItems: 'center',
-  //  justifyContent: 'center',
+    backgroundColor: '#fff',
   },
-  item:{
-    marginTop:24,
-    padding:8,
-    backgroundColor:'lightgrey',
-    fontSize:24,
-    borderColor:'black',
-    borderWidth:1,
-  },
-  header:{
+  content:{
     padding:20,
-    textAlign:'center',
-    fontWeight:'bold',
-    backgroundColor:'orange',
-    fontSize:24,
-    borderColor:'black',
-    borderWidth:2,
+    marginBottom:100
+  },
+  list:{
+    
   }
+
 
 });
