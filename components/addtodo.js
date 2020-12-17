@@ -27,11 +27,12 @@ export default function addtodo(props) {
 
 const styles=StyleSheet.create({
     input:{
+        backgroundColor:'lightgrey',
         marginBottom:10,
-        paddingHorizontal:8,
-        paddingVertical:6,
-        borderBottomWidth:1,
-        borderBottomColor:'#ddd',
+        padding: 8,
+        borderWidth:1,
+        borderColor:'#000',
+        borderRadius:5,
     }
 })
 

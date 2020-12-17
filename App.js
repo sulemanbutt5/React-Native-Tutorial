@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet,FlatList, Text, View, Alert } from 'react-native';
+import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet,FlatList, View, Alert } from 'react-native';
 import Header from './components/header'
 import TodoItem from './components/todoitem';
 import AddTodo from './components/addtodo'
@@ -8,18 +8,18 @@ import AddTodo from './components/addtodo'
 export default function App() {
 
   const [todos, setTodos] = useState([
-    {text:"yo Hhov",id:'1'},
-    {text:"nkh jcjfvjgv jhkvkv",id:'2'},
-    {text:"njhbvi jbjubiubgv jhbjbikv",id:'3'},
-    {text:"yo ihov",id:'4'},
-    {text:"nkh jcjfvjgv jhkvkv",id:'5'},
-    {text:"njhbvi jbjubiubgv jhbjbikv",id:'6'},
-    {text:"yo ihov",id:'7'},
-    {text:"nkh jcjfvjgv jhkvkv",id:'8'},
-    {text:"njhbvi jbjubiubgv jhbjbikv",id:'9'},
-    {text:"yo ihov",id:'10'},
-    {text:"nkh jcjfvjgv jhkvkv",id:'11'},
-    {text:"njhbvi jbjubiubgv jhbjbik",id:'12'},
+    {text:"Paani bharo",id:'1'},
+    {text:"Sabzi le ao",id:'2'},
+    {text:"khana bnao",id:'3'},
+    {text:"juice bhi bnaa lena",id:'4'},
+    {text:"kprey press kro",id:'5'},
+    {text:"charger le k ana",id:'6'},
+    {text:"handsfree bhi le ana",id:'7'},
+    {text:"or kuch zehn me nai aa rha",id:'8'},
+    {text:"sfai bhi dekh lena",id:'9'},
+    {text:"shirt bhi le k ani",id:'10'},
+    {text:"packing krni hai",id:'11'},
+    {text:"atlast list end ho gayee",id:'12'},
   ])
 
   const pressHandler=(id)=>
@@ -53,26 +53,29 @@ export default function App() {
 
   return(
   
-  <View style={styles.container}>
-    <Header/>
-    <View style={styles.content}>
-    <AddTodo submitHandler={submitHandler}/>
-      {/* To Form */}
-      <View style={styles.list}>
-        <FlatList
-          keyExtractor={todos.id}
-          data={todos}
-          renderItem={({item}) => (
-          
-          <TodoItem item={item} pressHandler={pressHandler}/>
-          
-          )}
-        />
+    
+      <View style={styles.container}>
+        <Header/>
+        <LinearGradient
+          colors={['#339CB1','#5ED2A0' ]} 
+          style={styles.lineargrad}
+        >
+          <View style={styles.content}>
+          <AddTodo submitHandler={submitHandler}/>
+            {/* To Form */}
+            <View style={styles.list}>
+              <FlatList
+                keyExtractor={todos.id}
+                data={todos}
+                renderItem={({item}) => (
+                <TodoItem item={item} pressHandler={pressHandler}/>
+                )}
+              />
+            </View>
+          </View>
+        </LinearGradient>
+        
       </View>
-    </View>
-
-  </View>
-
   )
 }
 
@@ -82,11 +85,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   content:{
+    flex:1,
     padding:20,
-    marginBottom:100
   },
   list:{
-    
+    flex:1
+  },
+  lineargrad:{
+    flex:1,
   }
 
 
