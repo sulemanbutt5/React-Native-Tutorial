@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet,Text, View } from 'react-native';
+import { StyleSheet,Text, View,StatusBar } from 'react-native';
 
 export default function Header()
 {
@@ -9,6 +9,7 @@ export default function Header()
           colors={['#000','coral']} 
           style={styles.lineargrad}
         >
+            <StatusBar barStyle = "light-content" hidden = {false} backgroundColor = "black" translucent = {true}/>
             <View style={styles.header}>
                 <Text style={styles.title}>
                     My Todos
@@ -23,7 +24,7 @@ const styles=StyleSheet.create({
 
     header:{
         height:80,
-        marginTop:25,
+        marginTop:30,
         alignItems:'center',
         justifyContent:'center',
     },
@@ -34,7 +35,7 @@ const styles=StyleSheet.create({
         fontWeight:'bold',
     },
     lineargrad:{
-        borderWidth:1,
+        borderWidth:1.5,
         borderColor:'black',
     }
 })
